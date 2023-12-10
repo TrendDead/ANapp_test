@@ -22,7 +22,7 @@ public class LevelsController : MonoBehaviour
 
         for (int i = 0; i < _levels.Length; i++)
         {
-            _levels[i].Init(i + 1, i <= lastLevel ? false : true);
+            _levels[i].Init(i + 1, i > lastLevel);
         }
     }
 }
