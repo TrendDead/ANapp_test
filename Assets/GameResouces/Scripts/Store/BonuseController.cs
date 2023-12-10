@@ -50,7 +50,8 @@ public class BonuseController : MonoBehaviour
     private GameObject _day7Panel;
 
     private int _maxDay = 7;
-    private float _timeCooldown = 24f / 24 / 60 / 6 / 2 / 2;
+    //private float _timeCooldown = 0.0007f;
+    private float _timeCooldown = 24f;
 
     private void OnEnable()
     {
@@ -93,7 +94,7 @@ public class BonuseController : MonoBehaviour
         {
             var timeSpan = DateTime.UtcNow - LastDay.Value;
 
-            if (timeSpan.TotalHours < _timeCooldown)
+            if (timeSpan.TotalHours <= _timeCooldown)
             {
                 isCanBonuse = false;
             }
