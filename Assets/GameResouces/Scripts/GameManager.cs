@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public event Action<int> TicketsUpdate;
+    public event Action LevelsUpdate;
 
     public int Tickets
     {
@@ -17,6 +18,23 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Tickets", value);
             PlayerPrefs.Save();
             TicketsUpdate?.Invoke(value);
+        }
+    }    
+    
+    public int Level
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("Level", 0);
+        }
+        set
+        {
+            if(value > Level)
+            {
+                PlayerPrefs.SetInt("Level", value);
+                PlayerPrefs.Save();
+                LevelsUpdate?.Invoke();
+            }
         }
     }
 

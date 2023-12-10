@@ -1,13 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public class ButtonSoundChanger : MonoBehaviour
+public class ButtonSoundChanger : ButtonClickSound
 {
     [SerializeField]
     private Sounds _sound;
 
-    private Button _button;
     private Image _image;
 
     enum Sounds
@@ -16,16 +14,11 @@ public class ButtonSoundChanger : MonoBehaviour
         Music
     }
 
-    private void Awake()
+    protected override void Awake()
     {
-        _button = GetComponent<Button>();
+        base.Awake();
         _image = GetComponent<Image>();
         _button.onClick.AddListener(ChangeSound);
-    }
-
-    private void OnDestroy()
-    {
-        _button.onClick.RemoveListener(ChangeSound);
     }
 
     private void ChangeSound()
