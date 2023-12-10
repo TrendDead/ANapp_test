@@ -4,17 +4,17 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class ButtonClickSound : MonoBehaviour
 {
-    private Button _button;
+    protected Button _button;
 
-    private void Start()
+    protected virtual void Awake()
     {
         _button = GetComponent<Button>();
         _button.onClick.AddListener(PlaySound);
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
-        _button.onClick.RemoveListener(PlaySound);
+        _button.onClick.RemoveAllListeners();
     }
 
 
