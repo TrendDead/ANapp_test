@@ -19,6 +19,7 @@ public class ButtonSoundChanger : ButtonClickSound
         base.Awake();
         _image = GetComponent<Image>();
         _button.onClick.AddListener(ChangeSound);
+        ChangeView();
     }
 
     private void ChangeSound()
@@ -30,6 +31,23 @@ public class ButtonSoundChanger : ButtonClickSound
                 break;
             case Sounds.Music:
                 AudioController.Instance.ChangeMusicSettins();
+                break;
+            default:
+                break;
+        }
+
+        ChangeView();
+    }
+
+    private void ChangeView()
+    {
+        switch (_sound)
+        {
+            case Sounds.Sfx:
+                _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, AudioController.Instance.IsSfxOn ? 1 : 0.5f);
+                break;
+            case Sounds.Music:
+                _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, AudioController.Instance.IsMusicOn ? 1 : 0.5f);
                 break;
             default:
                 break;
