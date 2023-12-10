@@ -8,6 +8,9 @@ public class AudioController : MonoBehaviour
     public const string MUSIC_KEY = "Music";
     public const string SFX_KEY = "Sfx";
 
+    public bool IsMusicOn => PlayerPrefs.GetFloat(MUSIC_KEY, 1) == 1;
+    public bool IsSfxOn => PlayerPrefs.GetFloat(SFX_KEY, 1) == 1;
+
     [SerializeField]
     private AudioMixer _audioMixer;
     [SerializeField]
